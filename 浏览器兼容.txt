@@ -1,0 +1,65 @@
+CSS hack(类属性前缀法)
+只需考虑IE6/7、FF(firefox)就可兼容所以浏览器
+注：不管是什么方法，书写的顺序都是firefox的写在前面，IE7的写在中间，IE6的写在最后面。
+1.*
+IE6,IE7能识别，FF不能识别
+eg：background-color：red;*background-color：blue;
+结果：IE6/7蓝色，FF红色
+2.！important
+IE7、FF可识别，IE6不可识别
+eg：background-color：red;*background-color：green !important;*background-color：blue;(经测试，IE7的效果不会被覆盖)
+结果：IE6红色，IE7绿色，FF红色
+3._下划线
+IE6可识别，IE7、FF不可识别
+eg：background-color:orange;*background-color:green;_background-color:blue;
+结果：IE6蓝色，IE7绿色，FF橙色
+
+CSS hack方式一：条件注释法
+　
+这种方式是IE浏览器专有的Hack方式，微软官方推荐使用的hack方式.
+	只在IE下生效
+	<!--[if IE]>
+	这段文字只在IE浏览器显示
+	<![endif]-->
+	
+	只在IE6下生效
+	<!--[if IE 6]>
+	这段文字只在IE6浏览器显示
+	<![endif]-->
+	
+	只在IE6以上版本生效
+	<!--[if gte IE 6]>
+	这段文字只在IE6以上(包括)版本IE浏览器显示
+	<![endif]-->
+	
+	只在IE8上不生效
+	<!--[if ! IE 8]>
+	这段文字在非IE8浏览器显示
+	<![endif]-->
+	
+	非IE浏览器生效
+	<!--[if !IE]>
+	这段文字只在非IE浏览器显示
+	<![endif]-->
+
+CSS hack方式二：类内属性前缀法
+	
+	说明：在标准模式中
+	"-"减号是IE6专有的hack
+	"\9" IE6/IE7/IE8/IE9/IE10都生效
+	"\0" IE8/IE9/IE10都生效，是IE8/9/10的hack
+	"\9\0" 只对IE9/IE10生效，是IE9/10的hack
+
+CSS hack方式三：选择器前缀法
+选择器前缀法是针对一些页面表现不一致或者需要特殊对待的浏览器，在CSS选择器前加上一些只有某些特定浏览器才能识别的前缀进行hack。
+
+常见有:
+
+*html *前缀只对IE6生效
+*+html *+前缀只对IE7生效
+@media screen\9{...}只对IE6/7生效
+@media \0screen {body { background: red; }}只对IE8有效
+@media \0screen\,screen\9{body { background: blue; }}只对IE6/7/8有效
+@media screen\0 {body { background: green; }} 只对IE8/9/10有效
+@media screen and (min-width:0\0) {body { background: gray; }} 只对IE9/10有效
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {body { background: orange; }} 只对IE10有效
