@@ -1,0 +1,18 @@
+DOM事件处理
+1.html事件处理
+<input type="submit" onclick="doSomething()">
+写在html标签中的事件，耦合性过高，不易修改维护。
+2.DOM0级事件处理
+<input type="submit" id="submit">
+var btn = document.getElementById("submit");
+btn.onlick=function(){
+	......
+}
+3.DOM2级事件处理
+添加以及删除事件的方法：
+FF等浏览器(一般也采用事件冒泡，另外支持事件捕获):
+addEventListener(element,type(click,mouseover等,不加on),true/false(true代表事件冒泡,false代表事件捕获,一般不填写,默认为true))
+removeEventListener()参数同上
+IE系列(只支持事件冒泡):
+attachEvent(element,type(类型添加on,eg:onlick/onmouseover))
+detachEvent()参数同上
