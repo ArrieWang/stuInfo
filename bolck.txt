@@ -1,5 +1,0 @@
-1.元素可分为块状元素block和行内元素inline
-2.行内元素又可以分为行内替换元素和非行内替换元素
-3.所有元素都具有盒子模型，可设置margin，padding属性，由于行内非替换元素的宽高不可设所以添加margin-top，margin-bottom，padding-top，padding-bottom对其高度无影响，所以认为其不可设置
-4.块状元素可以设置宽高，margin，padding等，并自占一行
-5.行内替换元素包括img，input，select，botton等，它们的作为其他内容占位符的一个元素，其表现形式由包含内容决定，设置内外边距效果可见，宽高可设，效果类似于inline-block属性。
